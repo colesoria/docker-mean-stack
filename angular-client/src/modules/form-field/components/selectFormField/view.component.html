@@ -1,0 +1,21 @@
+<div fxLayout="row" fxLayoutAlign="space-around center">
+  <div *ngIf="isLoading">
+    <mat-spinner diameter="20" color="accent"></mat-spinner>
+  </div>
+  <mat-form-field appearance="outline" [formGroup]="formGroup">
+    <mat-label>{{ fieldData.label | translate }}</mat-label>
+    <mat-select 
+          #select
+          matNativeControl 
+          formControlName="{{fieldData.name}}" 
+          (selectionChange)="onChange()" 
+          [multiple]="fieldData.multiple"
+          [required]="fieldData.required"
+          [disabled]="fieldData.options.length === 0 || fieldData.disabled">
+      <mat-option *ngFor="let option of fieldData.options; let i = index" [value]="option.value" [disabled]="option.disabled ? option.disabled : false" [style.color]="(i < 10 && isRecomendation) ? '#64ca26' : 'inherit'">
+        {{option.name | translate}}
+      </mat-option>
+    </mat-select>
+    <mat-error>{{ 'FORMS.errors.select_component' | translate:fieldData }}</mat-error>
+  </mat-form-field>
+</div>

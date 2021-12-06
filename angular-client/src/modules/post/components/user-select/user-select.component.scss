@@ -1,0 +1,53 @@
+// ::ng-deep .mat-form-field-flex {
+//   /*border: 1px solid #AFB5AA !important;*/
+//     border-radius: 6px !important;
+//         padding: 4px 10px !important;
+    
+//         background-color: transparent ;
+// }
+
+.selec-tabls .mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: transparent;
+}
+
+.selec-tabls .mat-form-field-flex {
+   border: 1px solid #AFB5AA !important;
+    border-radius: 6px !important;
+    padding: 4px 10px !important;
+    background-color: transparent !important;
+}
+
+
+.selec-tabls .mat-form-field-underline {
+    opacity: 0;
+}
+
+.selec-tabls .mat-form-field-infix {
+    padding: 0 !important;
+    border-top: 0.58625em solid transparent;
+}
+
+
+.selec-tabls .mat-form-field-appearance-fill .mat-select-arrow-wrapper {
+    transform: translateY(-16%) !important;
+}
+
+.sellc-cont {
+    width: 100%;
+    float: left;
+    display: block ;
+}
+
+.slec-dis {
+    width: 100%;
+    display: table ;
+}
+
+
+.labl-selc {
+    width: 100%;
+    float: left;
+    font-size: 14px;
+    color: #ACAFA8;
+    margin-bottom: 6px;
+}

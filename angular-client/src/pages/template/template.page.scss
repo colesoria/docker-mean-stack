@@ -1,0 +1,196 @@
+.container {
+    height: 100%;
+    padding-left: 260px;
+}
+
+mat-sidenav-container{
+  margin-top: 114px;
+  position: relative;
+  /*height: calc(100vh - 114px);*/
+}
+.mat-toolbar-row{
+  height:auto;
+}
+mat-sidenav-content{
+  padding: 20px 20px;
+}
+
+.spacer {
+    flex: 1 1 auto;
+  }
+  
+.mat-toolbar {
+  position: fixed;
+  top:0;
+  z-index: 2;
+  height: 114px;
+  padding-right: 4px;
+}
+  
+  .menu-button {
+    transition: 300ms ease-in-out;
+    transform: rotate(0deg);
+  }
+  .menu-button.rotated {
+    transform: rotate(180deg);
+  }
+  
+  .mat-expansion-panel{
+    box-shadow: none;
+    padding-left: 0px;
+    background-color: initial;
+  }
+  
+  
+  .sidenav {
+    position: fixed;
+    top: 114px;
+   /*  padding-left: 10px; */
+    height: calc(100vh - 114px);
+    width: 260px;
+
+  }
+  menu{
+    margin-left: -25px;
+  }
+
+  .menu{
+    font-size: 12px;
+    line-height: 1;
+    letter-spacing: 0.6px;
+    text-align: left;
+  }
+  
+  .submenu{
+    font-size: 16px;
+    line-height: 1.13;
+    text-align: left;
+  /*   color: rgba(255, 255, 255, 0.33); */
+  
+  }
+  
+  .mat-expansion-panel-header {
+    height: auto!important; 
+  }
+  
+  .mat-drawer-side {
+    border: none;
+  }
+
+  .logo-container{
+    width:calc(260px - 16px);
+    display:inline-table;
+    img{
+      padding-top:1rem;
+      margin-bottom:1rem;
+      display:block;
+    }
+  }
+  .company_logo{
+    width:85%;
+    padding-left:20px;
+    img{
+      padding-top:0;
+      display:block;
+      margin-bottom:1rem;
+    }
+  }
+  .pipe{
+    padding-left:0.5rem;
+    padding-right:0.5rem;
+  }
+  .logout{
+    cursor:pointer;
+    font-weight: 600;
+  }
+  .logout:hover{
+    opacity:0.7;
+  }
+  h3{
+    position: absolute;
+    top: 140px;
+    color: white;
+    z-index: 1;
+    padding-left: 30px;
+    font-weight: bold;
+  }
+  .bread-container{
+    margin-left: -20px;
+    margin-top: -20px;
+    margin-right: -20px;
+    height: 55px;
+    z-index: 99999;
+    background-color: white;
+    padding: 0px 25px;
+    box-shadow: 2px 5px 10px -3px rgba(201, 201, 201, 0.35);
+
+    .bread-data{
+
+      p{
+        display:inline;
+        margin-left:10px;
+        color:#8BD85B;
+        span{
+          color:#9A9A9A;
+          font-weight: 600;
+          margin-left:0.5rem;
+        }
+      }
+    }
+  }  
+  xng-breadcrumb{
+  }
+
+  xng-breadcrumb-trail{
+    color:initial;
+  }
+  
+  mat-expansion-panel{
+    padding: 10px;
+    
+  }
+  
+  mat-panel-title{
+    color: rgba(255, 255, 255, 0.33);
+  }
+  
+  mat-expansion-indicator::after{
+    color: rgba(255, 255, 255, 0.33);
+  }
+  
+  mat-expansion-panel-header:hover {
+    background-color: white;
+  }
+
+  .subtitle{
+    font-size: 16px;
+  }
+
+  .welcome{
+    float:right;
+  }
+
+  .mat-icon {
+    transform: scale(0.8);
+}
+  
+  
+  @media (max-width: 599px){
+  
+    .mat-toolbar-row, .mat-toolbar-single-row {
+        height: 64px;
+    }
+  
+  }
+  
+.logoLadorian{
+  padding-left: 24px; 
+  padding-top: 25px;
+}
+
+.logoCliente{
+}
+
+.logoCliente img {
+  padding-top: 15px;
+}

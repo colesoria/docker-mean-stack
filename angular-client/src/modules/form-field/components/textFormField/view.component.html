@@ -1,0 +1,11 @@
+<div fxLayout="row" fxLayoutAlign="space-around center">
+  <mat-form-field appearance="outline" [formGroup]="formGroup">
+    <mat-label>{{ fieldData.label | translate }}</mat-label>
+    <input matInput
+      id="{{fieldData.name}}" 
+      disabled
+      formControlName="{{fieldData.name}}" 
+      [required]="fieldData.required">
+    <mat-error>{{ 'FORMS.errors.text_component' | translate:fieldData }}</mat-error>
+  </mat-form-field>
+</div>

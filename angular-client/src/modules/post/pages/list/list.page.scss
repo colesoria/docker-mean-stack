@@ -1,0 +1,60 @@
+.loading{
+    position: relative;
+    left: 50%;
+}
+
+.actions{
+    padding-bottom: 25px;   
+}
+
+.actions a{
+    margin-right: 5px;
+    width: 100px;
+}
+
+.actions button{
+    margin-right: 5px;
+    width: 100px;
+}
+
+th.mat-header-cell, td.mat-cell {
+    border:none;
+}
+.detailRow{
+    text-align: center;
+    justify-content:center;
+}
+.detail{
+    cursor:pointer;
+    font-size:2.5rem;
+}
+.detail:hover{
+    opacity:0.5;
+}
+
+.mat-badge-medium .mat-badge-content {
+    line-height: 30px;
+    top: -15px;
+    right: -15px;
+    min-width:30px;
+    width: auto;
+    min-height:30px;
+    height: auto;
+    padding: 4px 4px;
+}
+table{
+    width:100%;
+}
+
+.mat-column-idcamera, .mat-column-link {
+    flex: 0 0 5%;
+}
+.mat-column-faces_today, .mat-column-faces_yesterday{
+    flex: 0 0 10%;
+}
+.mat-column-email {
+    flex: 0 0 30%;
+}
+.mat-column-site {
+    flex:0 0 30%;
+}

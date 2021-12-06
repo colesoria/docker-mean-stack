@@ -1,0 +1,22 @@
+<ng-container>
+  <mat-toolbar color="accent">
+    <div fxLayout="column" fxFlex>
+      <div fxFlex="36px" fxLayout="row">
+        <div fxFlex>{{ 'COMMON.hello' }}</div>
+      </div>
+    </div>
+  </mat-toolbar> 
+  <mat-sidenav-container class="example-container">
+    <mat-sidenav-content> 
+      <div fxLayout="row" fxLayoutAlign="start center" class="bread-container">
+        <xng-breadcrumb fxFlex separator=">">             
+          <ng-container *xngBreadcrumbItem="let breadcrumb; let info = info; let first = first" > 
+            <ng-container>{{breadcrumb | titlecase}}</ng-container> 
+          </ng-container>     
+        </xng-breadcrumb>
+      </div>
+      <div style="height: 60px;"></div>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</ng-container>
