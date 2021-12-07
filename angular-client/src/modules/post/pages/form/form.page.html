@@ -1,154 +1,37 @@
 <div fxLayout="row" fx fxLayoutAlign="space-between start">
     <div fxLayout="column" fxFlex>
-        <h1 class="title">{{ 'CAMERA.list.title' | translate }}</h1>
+        <h1 class="title">Listado de posts</h1>
     </div>
     <div fxLayout="column" align="end">
-        <button mat-icon-button [routerLink]="['/private/camera/list']" matTooltip="{{'Volver' | translate}}">
+        <button mat-icon-button [routerLink]="['/']" matTooltip="Volver">
             <mat-icon>west</mat-icon>
         </button>
     </div>
 </div>
-
-<div fxLayout="column"  class="form-background">
-
-
- <form   [formGroup]="form">   
-
-    <div fxLayout="row" fxLayoutAlign="center space-between" fxLayoutGap="33px">
-
-        <div fxLayout="column" fxFlex="33">
-
-         <!--    <customer-select [selected]="customerSelect" apparence='outline' [customersToSelect]="customersToSelect"
-                (onSelected)="customerSelected($event)"></customer-select> -->
-
-            <div [ngClass]="{'hide': hide}">
-
-                <site-select [selected]="site" apparence='outline' (onChange)="changeSite($event)"></site-select>
-
-                <mat-label color="primary">{{'Nombre' | translate}} * </mat-label>
-                <mat-form-field appearance="outline">
-                    <input matInput type="text" formControlName="name" value="" required />
-                    <mat-error *ngIf="form.controls['name'].errors?.required" color="accent">{{ 'required_name' |
-                        translate }}</mat-error>
-                </mat-form-field>
-
-                <mat-label color="primary">{{ 'FORMS.fields.email' | translate }}* </mat-label>
-                <mat-form-field appearance="outline">
-                    <input matInput type="email" formControlName="email" value="" />
-                    <mat-error *ngIf="form.controls['email'].errors?.email" color="accent">{{ 'required_email' |
-                        translate }}</mat-error>
-                    <mat-error *ngIf="form.controls['email'].errors?.required" color="accent">{{ 'required_email' |
-                        translate }}</mat-error>
-                </mat-form-field>
-
-                <mat-label color="primary">{{ 'FORMS.fields.code' | translate }} </mat-label>
-                <mat-form-field appearance="outline">
-                    <input matInput type="text" formControlName="code" value="" />
-                    <mat-error *ngIf="form.controls['code'].errors?.required" color="accent">{{ 'code' | translate }}
-                    </mat-error>
-                </mat-form-field>
-
-
-                <mat-label color="primary">{{ 'schedule' | translate }}</mat-label>
-                <primetime-power [selectedContentPowers]="selectedCameraPowers"
-                    (modalSave)="onSaveCameraPowerDialog($event)"></primetime-power>
-            </div>
-        </div>
-
-
-
-
-
-        <div fxLayout="column" fxFlex="33">
-            <div [ngClass]="{'hide': hide}">
-
-                <mat-label color="primary">{{ 'face_timeout' | translate }} </mat-label>
-                <mat-form-field appearance="outline">
-                    <input matInput type="number" formControlName="face_timeout" value="" />
-                </mat-form-field>
-
-                <mat-label color="primary">{{ 'section_start_x' | translate }} </mat-label>
-                <mat-form-field appearance="outline">
-                    <input matInput type="number" formControlName="section_start_x" value="" />
-                </mat-form-field>
-
-                <mat-label color="primary">{{ 'section_start_x' | translate }} </mat-label>
-                <mat-form-field appearance="outline">
-                    <input matInput type="number" formControlName="section_start_y" value="" />
-                </mat-form-field>
-
-                <mat-label color="primary">{{ 'section_width' | translate }} </mat-label>
-                <mat-form-field appearance="outline">
-                    <input matInput type="number" formControlName="section_width" value="" />
-                </mat-form-field>
-
-                <mat-label color="primary">{{ 'section_height' | translate }} </mat-label>
-                <mat-form-field appearance="outline">
-                    <input matInput type="number" formControlName="section_height" value="" />
-                </mat-form-field>
-
-                <div fxLayout="row" fxLayoutAlign="space-between center" class="check-status">
-                    <mat-label color="primary">{{ 'status' | translate }} </mat-label><br>
-                    <mat-checkbox formControlName="status" [checked]="check">{{ 'activated' | translate }}
-                    </mat-checkbox>
+<div fxLayout="column" class="form-background">
+    <form [formGroup]="form">   
+        <div fxLayout="row" fxLayoutAlign="center space-between" fxLayoutGap="33px">
+            <div fxLayout="column" fxFlex="33">
+                <div>
                 </div>
-
-
-
+            </div>
+            <div fxLayout="column" fxFlex="33">
+                <div>
+                </div>
+            </div>
+            <div fxLayout="column" fxFlex="33">
             </div>
         </div>
-
-
-
-        <div fxLayout="column" fxFlex="33">
-
-
-
-
-            <mat-label color="primary">{{ 'face_size' | translate }} </mat-label>
-            <mat-form-field appearance="outline">
-                <input matInput type="number" formControlName="face_size" value="" />
-            </mat-form-field>
-
-            <mat-label color="primary">{{ 'face_threshold' | translate }} </mat-label>
-            <mat-form-field appearance="outline">
-                <input matInput type="number" formControlName="face_threshold" value="" />
-            </mat-form-field>
-
-            <mat-label color="primary">{{ 'cosine_threshold' | translate }} </mat-label>
-            <mat-form-field appearance="outline">
-                <input matInput type="number" formControlName="cosine_threshold" value="" />
-            </mat-form-field>
-
-            <mat-label color="primary">{{ 'embedding_threshold' | translate }} </mat-label>
-            <mat-form-field appearance="outline">
-                <input matInput type="number" formControlName="embedding_threshold" value="" />
-            </mat-form-field>
-
-
+        <div fxLayout="row" fxFlex fxLayoutAlign="end end">
+                <div class="spinner-container" *ngIf="loading">
+                    <mat-spinner diameter="24" color="accent"></mat-spinner>
+                </div>
+                <button mat-button mat-dialog-close class="mat-raised-button" [routerLink]="['/']">Cancelar</button>
+                <div fxLayout="column" fxFlex="20px"></div>
+                <button mat-raised-button *ngIf="!id" color="accent" [disabled]="loading" (click)="create()">Guardar</button>
+                <button mat-raised-button *ngIf="id" color="accent" [disabled]="loading" (click)="update()">Actualizar</button>
         </div>
-
-    </div>
-
-
-    <div fxLayout="row" fxFlex fxLayoutAlign="end end">
-
-       
-            <div class="spinner-container" *ngIf="loading">
-                <mat-spinner diameter="24" color="accent"></mat-spinner>
-            </div>
-            <button mat-button mat-dialog-close class="mat-raised-button" [routerLink]="['/private/camera/list']">{{
-                'FORMS.buttons.cancel' | translate }}</button>
-            <div fxLayout="column" fxFlex="20px"></div>
-            <button mat-raised-button *ngIf="!id" color="accent" [disabled]="loading" (click)="create()">{{
-                'FORMS.buttons.save' | translate }}</button>
-            <button mat-raised-button *ngIf="id" color="accent" [disabled]="loading" (click)="update()">{{
-                'FORMS.buttons.save' | translate }}</button>
-    
-    </div>
-
-</form>    
-
+    </form>    
 </div>
 
 

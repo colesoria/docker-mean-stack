@@ -19,17 +19,18 @@ export class PostUserSelectComponent implements OnInit {
 	public loadingUsers:boolean = false;
 
 	public fieldDataUser: FormField = {
-		label: "Usuario",
+		label: "Autor",
 		name: 'user',
-		placeholder: 'Filtra por usuario',
+		placeholder: 'Filtra por autor',
 		options: [],
 		multiple:false,
 		required: this.required
 	};
 
 	public users:User[] = [];
+
 	public formGroup:FormGroup = new FormGroup({
-		user: new FormControl(null)
+		user: new FormControl('')
 	});
 
   	constructor(
@@ -44,11 +45,12 @@ export class PostUserSelectComponent implements OnInit {
   
 	private getUsers(){
 		this.loadingUsers = true;
+		this.fieldDataUser.options = [];
 		this._user.list().subscribe((users: User[]) => {
 			if(users) {
 				this.users = users.map(u => new User(u));
 				this.users.map(u => {
-					this.fieldDataUser.options.push({value: u.id, name: u.name});
+					this.fieldDataUser.options!.push({value: u.id, name: u.name});
 				});
 			}
 			this.loadingUsers = false;
@@ -60,11 +62,13 @@ export class PostUserSelectComponent implements OnInit {
 	ngOnChanges(changes: SimpleChanges): void {
 		//Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
 		//Add '${implements OnChanges}' to the class.
-		if(changes.selected && changes.selected.currentValue)
-			this.formGroup.patchValue({user: changes.selected.currentValue});
+		if(changes['selected'] && changes['selected'].currentValue)
+			this.formGroup.patchValue({user: changes['selected'].currentValue});
 	}
-	public userChanged(data){
-		this.onSelected.emit(this.formGroup.get('user').value);
+	public userChanged(){
+		const user = this.formGroup.get('user')!.value;
+		if(user)
+			this.onSelected.emit(user);
 	}
 	public openSnackBar(message: string) {
 		this._snackBar.open(message,'', {

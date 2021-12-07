@@ -1,3 +1,5 @@
+import { User } from './user';
+
 export interface IPost {
   id: number;
   title: string;

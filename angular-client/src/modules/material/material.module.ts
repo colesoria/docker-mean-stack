@@ -62,7 +62,7 @@ const materialModules = [
   MatRadioModule,
   MatBadgeModule,
   MatSortModule,
-  MatAutocompleteModule,
+  MatAutocompleteModule
 ];
 @NgModule({
   imports: [ 

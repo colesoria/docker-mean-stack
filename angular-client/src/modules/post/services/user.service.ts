@@ -11,21 +11,21 @@ export class UserService implements ICrudWS<User>{
 	
 	constructor(private http: HttpService) {}
 
-	public list(args?:any[]): Observable<User[]> {
-		return this.http.get('users', args);
+	public list(): Observable<User[]> {
+		return this.http.get('user', []);
 	}
 	public get(id: number): Observable<User> {
-		return this.http.get('users', [id]);
+		return this.http.get('user', [id]);
 	}
 
 	public create(data: any): Observable<User> {
-		return null;
+		return this.http.create(`user`, data);
 	}
 	public update(obj: User): Observable<User> {
-		return null;
+		return this.http.update(`user/${obj.id}`,obj);
 	}
 	public delete(id: number): Observable<boolean> {
-		return null;
+		return this.http.delete('user', [id]);
 	}
 }
 

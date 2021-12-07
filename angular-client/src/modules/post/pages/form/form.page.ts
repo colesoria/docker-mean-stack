@@ -27,7 +27,7 @@ export class PostFormPage {
 		private router: Router,
 		private route: ActivatedRoute,
 		private _snackBar: MatSnackBar) {
-			this.id = Number(this.route.snapshot.paramMap.get('idcamera'));
+			this.id = Number(this.route.snapshot.paramMap.get('id'));
 		}
   
   	public ngOnInit() {
@@ -38,11 +38,11 @@ export class PostFormPage {
 			}, error => {
 			}); 
 		}else{
-			this.initForm(null);
+			this.initForm();
 		}
 	} 
 	
-    private initForm(data) {
+    private initForm(data:any = null) {
 		if(data) {
 			this.form.patchValue({
 				title: data.title,
@@ -71,7 +71,6 @@ export class PostFormPage {
 		let form = this.form.getRawValue();
 		this.loading = true;
 		let data: Post = new Post(this.form.value);
-		data.id = this.id;
         this.form.value.id = this.id;
 		this._post.update(this.form.value).subscribe((post:Post) => {
 			this.openSnackBar("Post actualizado correctamente");

@@ -24,7 +24,7 @@ export class SelectformFieldComponent implements AfterViewInit {
 	@Input() panelOpen: boolean = false;
 	@Output() onChangeField: EventEmitter<any> = new EventEmitter<any>();
 
-	@ViewChild('select') select;
+	@ViewChild('select') select:any;
 
   	constructor(
 	  ) {		  

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DirectivesModule } from 'src/directive/directives.module';
-import { FlexModule } from '@angular/flex-layout';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from 'src/modules/material/material.module';
 
 import { PostRoutingModule } from './post-routing.module';
@@ -10,8 +10,8 @@ import { COMPONENTS } from './components/components';
 import { FormFieldModule } from 'src/modules/form-field/form-field.module';
 import { PostListPage } from 'src/modules/post/pages/list/list.page';
 import { PostFormPage } from 'src/modules/post/pages/form/form.page';
-import { HttpClient } from '@angular/common/http';
-import { HttpService } from 'src/services/http.service';
+import { PostService } from './services/post.service';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -21,18 +21,18 @@ import { HttpService } from 'src/services/http.service';
   ],
   imports: [
     CommonModule,
+    RouterModule,
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    FlexModule,
+    FlexLayoutModule,
     FormFieldModule,
-    PostRoutingModule,
-    DirectivesModule
+    PostRoutingModule
   ],
   exports:[
     COMPONENTS
   ],
   entryComponents: [],
-  providers: [HttpService],
+  providers: [PostService, UserService],
 })
 export class PostModule {}

@@ -7,24 +7,25 @@ import { ICrudWS } from 'src/interfaces/ICrudWS.interface';
 @Injectable({
 	providedIn: 'root',
 })
+
 export class PostService implements ICrudWS<Post>{
 	
 	constructor(private http: HttpService) {}
 
-	public list(args?:any[]): Observable<Post[]> {
-		return this.http.get(`posts`, args);
+	public list(): Observable<Post[]> {
+		return this.http.get(`post`, []);
 	}
 	public get(id: number): Observable<Post> {
-		return this.http.get('posts', [id]);
+		return this.http.get('post', [id]);
 	}
 	public create(data: any): Observable<Post> {
-		return this.http.create(`posts`, data);
+		return this.http.create(`post`, data);
 	}
 	public update(obj: Post): Observable<Post> {
-		return this.http.update(`posts/${obj.id}`,obj);
+		return this.http.update(`post/${obj.id}`,obj);
 	}
 	public delete(id: number): Observable<boolean> {
-		return this.http.delete('posts', [id]);
+		return this.http.delete('post', [id]);
 	}
 }
 

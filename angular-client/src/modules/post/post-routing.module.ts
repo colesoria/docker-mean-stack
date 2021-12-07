@@ -6,8 +6,8 @@ import { PostFormPage } from 'src/modules/post/pages/form/form.page';
 
 const routes: Routes = [
   { path: '', component: PostListPage },
-  { path: 'post/create', component: PostFormPage, data: { breadcrumb: 'Crear post' }},
-  { path: 'post/edit/:idpost', component: PostFormPage, data: { breadcrumb: 'Editar post' }}
+  //{ path: 'post/create', component: PostFormPage, data: { breadcrumb: 'Crear post' }},
+  //{ path: 'post/edit/:idpost', component: PostFormPage, data: { breadcrumb: 'Editar post' }}
 ];
 
 @NgModule({

@@ -9,7 +9,7 @@ import { Observable, of, Subject, throwError } from 'rxjs';
 export class HttpService {
   alert: Subject<any>  = new Subject();
   $alert = this.alert.asObservable(); 
-  ws_url = 'http://localhost:3000/'  
+  ws_url = 'http://localhost:3000'  
 
   constructor(private http: HttpClient) {}
 
@@ -31,7 +31,7 @@ export class HttpService {
       tap((item: any) => this.debugStore(item)),
       map((item) => item.data),
       catchError((err) => this.debugError(err)),
-      shareReplay();
+      shareReplay()
     );
   }
   update(url: string, values: any): Observable<any> {
@@ -39,7 +39,7 @@ export class HttpService {
       tap((item: any) => this.debugStore(item)),
       map((item) => item.data),
       catchError((err) => this.debugError(err)),
-      shareReplay();
+      shareReplay()
     );
   }
   
@@ -70,7 +70,7 @@ export class HttpService {
     if (params.success) {
       console.log('successful');
     } else {
-      console.log(params.data);
+      //console.log(params.data);
     }
   }
 

@@ -45,16 +45,27 @@ th.mat-header-cell, td.mat-cell {
 table{
     width:100%;
 }
-
-.mat-column-idcamera, .mat-column-link {
-    flex: 0 0 5%;
+mat-row{
+    &:hover{
+        background-color: #ccc;;
+        cursor:pointer;
+    }
 }
-.mat-column-faces_today, .mat-column-faces_yesterday{
+.mat-column-id, .mat-column-link {
     flex: 0 0 10%;
 }
-.mat-column-email {
-    flex: 0 0 30%;
+.mat-column-title{
+    flex: 0 0 55%;
 }
-.mat-column-site {
-    flex:0 0 30%;
+.mat-colum-user{
+    flex: 0 0 35%;
+}
+.table-container{
+    max-height:calc(100vh - 200px);
+    display:inline-block;
+    overflow-y: auto;
+    margin-right: 1rem;
+}
+.w-75{
+    width:75px;
 }

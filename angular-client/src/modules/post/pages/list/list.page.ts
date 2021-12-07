@@ -1,9 +1,10 @@
 import { AfterViewInit, QueryList, ViewChildren } from '@angular/core';
 import { Component, ViewChild } from '@angular/core';
 import { PostService } from 'src/modules/post/services/post.service';
-import { MatPaginator } from '@angular/material/paginator';
+import { UserService } from 'src/modules/post/services/user.service';
 import { MatSort } from '@angular/material/sort';
 import { Post } from 'src/modules/post/models/post';
+import { User } from 'src/modules/post/models/user';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -22,31 +23,31 @@ import { concatMap } from 'rxjs/operators';
 
 export class PostListPage implements AfterViewInit{
 
-	@ViewChild(MatPaginator) paginator: MatPaginator;
 	@ViewChild(MatSort) sort: MatSort;
     @ViewChildren('table') table: QueryList<MatCheckbox>
     @ViewChild(MatInput) input: MatInput;
 
 	ngAfterViewInit() {
-		setTimeout(() => {
-			this.dataSource.paginator = this.paginator;
-		}) 
 		this.dataSource.sort = this.sort;
 	}
 
-	public displayedColumns: string[] = ['id', 'title', 'body',  'user'];
+	public displayedColumns: string[] = ['id', 'title', 'author'];
 	public selection = new SelectionModel<Post>(true, []);
 	public dataSource = new MatTableDataSource<Post>();
 	public new: boolean = false;
 	public edit: boolean = false;
 	public deleted: boolean = false;
 	public load: boolean = true;
-	sortedData: Post[];
-	posts: Post[];
-    data: Post[];
+	public sortedData: Post[] = [];
+	public posts: Post[] = [];
+    public data: any[] = [];
+	public users: User[] = [];
+
+	public selectedPost:any;
 
 	constructor(
 		private _post: PostService,
+		private _user: UserService,
 		private _snackBar: MatSnackBar,
 		private router: Router) {}
   
@@ -56,9 +57,18 @@ export class PostListPage implements AfterViewInit{
 
 	private getPosts(){
 		this._post.list().subscribe((posts:Post[]) => {
-            this.data = posts;
-			this.renderDataTable(posts);
-            this.load = false;
+			this._user.list().subscribe((users:User[]) => {
+				posts.map(p => {
+					let data:any = p;
+					data.user =  users.filter(u => u.id === p.userId)[0];
+					this.data.push(data);
+				})
+				
+				this.data = posts;
+				this.selectedPost = this.data[0];
+				this.renderDataTable(posts);
+				this.load = false;
+			});
 		}, error => {
 			this.load = false;
 			return null;          
@@ -71,22 +81,19 @@ export class PostListPage implements AfterViewInit{
         this.render(data);
 	}
 
-	public render(data){
+	public render(data:any){
         if(this.input)
             this.applyFilter(this.input.value);
 		this.sortedData = data.slice();
 		this.posts = data;
-		setTimeout(() => {
-			this.dataSource.paginator = this.paginator;
-		})
 		this.dataSource.sort = this.sort;
 		this.load = false;
 	}
 
 
 	
-	public delete(id){
-        this.deleteByIds(id);	
+	public delete(id:number){
+        this.deleteByIds([id]);	
 	}
 
 	public update(){
@@ -100,7 +107,7 @@ export class PostListPage implements AfterViewInit{
 	}
 
 	
-	public goToDetail(row){
+	public goToDetail(row: any){
 		this.router.navigateByUrl(`/post/${row.id}`);
 	}
 	
@@ -115,8 +122,8 @@ export class PostListPage implements AfterViewInit{
 		  const isAsc = sort.direction === 'asc';
 		  switch (sort.active) {
 			case 'id': return this.compare(a.id, b.id, isAsc);
-			case 'title': return this.compare(a.id, b.id, isAsc);
-			case 'body': return this.compare(a.id, b.id, isAsc);
+			case 'title': return this.compare(a.title, b.title, isAsc);
+			case 'author': return this.compare(a.userId, b.userId, isAsc);
 			default: return 0;
 		  }
 		});
@@ -146,4 +153,14 @@ export class PostListPage implements AfterViewInit{
                 this.getPosts(); 
             }); 
     }
+
+	public selectPost(id:number){
+		this.selectedPost = this.data.filter(p => p.id === id)[0];
+	}
+
+	public filterByUser(userId:number){
+		console.log(userId);
+		const data = this.data.filter(p => p.userId === userId);
+		this.renderDataTable(data);
+	}
 }
