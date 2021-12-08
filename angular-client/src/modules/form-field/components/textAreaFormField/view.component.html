@@ -1,10 +1,10 @@
 <div fxLayout="row" fxLayoutAlign="space-around center">
   <mat-form-field appearance="outline" [formGroup]="formGroup">
     <mat-label>{{ fieldData.label }}</mat-label>
-    <input matInput
+    <textarea  matInput
       id="{{fieldData.name}}" 
       formControlName="{{fieldData.name}}" 
-      [required]="fieldData.required">
+      [required]="fieldData.required"></textarea>
     <mat-error>{{ fieldData.name }} no tiene un valor correcto.</mat-error>
   </mat-form-field>
 </div>

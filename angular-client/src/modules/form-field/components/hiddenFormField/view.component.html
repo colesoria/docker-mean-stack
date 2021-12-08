@@ -1,5 +1,5 @@
 <div fxLayout="row" fxLayoutAlign="space-around center">
-  <mat-form-field appearance="outline" [formGroup]="formGroup">
+  <mat-form-field appearance="outline" [formGroup]="formGroup" [class.cdk-visually-hidden]="hidden">
     <mat-label>{{ fieldData.label }}</mat-label>
     <input matInput
       id="{{fieldData.name}}" 

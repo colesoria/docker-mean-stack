@@ -15,6 +15,7 @@ export class PostUserSelectComponent implements OnInit {
 	@Output() onSelected = new EventEmitter<number>();
 	@Input() selected: number;
 	@Input() required: boolean = false;
+	@Input() all: boolean = false;
 
 	public loadingUsers:boolean = false;
 
@@ -46,6 +47,11 @@ export class PostUserSelectComponent implements OnInit {
 	private getUsers(){
 		this.loadingUsers = true;
 		this.fieldDataUser.options = [];
+		if(this.all){
+			this.fieldDataUser.options.push({value:0, name: "Todos"});
+			this.formGroup.patchValue({user: 0});
+			this.userChanged();
+		}
 		this._user.list().subscribe((users: User[]) => {
 			if(users) {
 				this.users = users.map(u => new User(u));
@@ -67,7 +73,7 @@ export class PostUserSelectComponent implements OnInit {
 	}
 	public userChanged(){
 		const user = this.formGroup.get('user')!.value;
-		if(user)
+		if(user !== null)
 			this.onSelected.emit(user);
 	}
 	public openSnackBar(message: string) {

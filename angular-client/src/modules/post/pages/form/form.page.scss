@@ -25,7 +25,14 @@
       width: 100%;
   }
 
+  form{
+    width:100%;
+  }
 
   .form-background {
      align-items: center;
+  }
+
+  post-user-select, form-field-text, form-field-text-area{
+    width:100%;
   }

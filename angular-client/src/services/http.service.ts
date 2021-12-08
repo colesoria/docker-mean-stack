@@ -34,6 +34,16 @@ export class HttpService {
       shareReplay()
     );
   }
+
+  getComments(url: string, params: any[]): Observable<any> {
+    const values = this.url(params);
+    return this.http.get(this.ws_url + '/' + url + values).pipe(
+      tap((item: any) => this.debugStore(item)),
+      map((item) => item.data),
+      catchError((err) => this.debugError(err)),
+      shareReplay()
+    );
+  }
   update(url: string, values: any): Observable<any> {
     return this.http.put(this.ws_url + '/' + url, values).pipe(
       tap((item: any) => this.debugStore(item)),

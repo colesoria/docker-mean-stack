@@ -6,10 +6,10 @@
   <div>
     <div class="actions" fxLayound="row">
       <div fxFlex="50">
-        <button mat-raised-button color="accent" [routerLink]="['/private/post/create']" mat-button><span>Nuevo</span></button>
+        <button mat-raised-button color="accent" [routerLink]="['/post/create']" mat-button><span>Nuevo</span></button>
       </div>
       <div fxFlex="50">
-        <post-user-select (onSelected)="filterByUser($event)"></post-user-select>
+        <post-user-select [all]="all" (onSelected)="filterByUser($event)"></post-user-select>
       </div>
     </div>
     <div *ngIf="!dataSource" fxLayout="row" fxLayoutAlign="space-around center" style="height:100%">
@@ -40,16 +40,31 @@
       <mat-card>
         <mat-card-header>
           <mat-card-title>{{ selectedPost.title }}</mat-card-title>
-          <mat-card-subtitle>{{ selectedPost.user.name }} - {{ selectedPost.user.email }}</mat-card-subtitle>
+          <mat-card-subtitle>{{ selectedPost.user ? selectedPost.user.name : null}} - {{ selectedPost.user ? selectedPost.user.email : null }}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
           <p>
             {{selectedPost.body}}
           </p>
         </mat-card-content>
+        <mat-card-content>
+          <ng-container fxLayout="row">
+            <mat-card *ngFor="let comment of selectedPost.comments" fxFlex="20">
+              <mat-card-header>
+                <mat-card-title>{{ comment.name }}</mat-card-title>
+                <mat-card-subtitle>{{ comment.email }}</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <p>
+                  {{comment.body}}
+                </p>
+              </mat-card-content>
+            </mat-card>
+          </ng-container>
+        </mat-card-content>
         <mat-card-actions>
-          <button mat-button>Editar</button>
-          <button mat-button>Borrar</button>
+          <button mat-button [routerLink]="['/post/edit',selectedPost.id]">Editar</button>
+          <button mat-button (click)="delete(selectedPost.id)">Borrar</button>
         </mat-card-actions>
       </mat-card>
     </div>    

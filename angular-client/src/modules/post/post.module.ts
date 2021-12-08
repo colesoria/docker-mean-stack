@@ -12,6 +12,8 @@ import { PostListPage } from 'src/modules/post/pages/list/list.page';
 import { PostFormPage } from 'src/modules/post/pages/form/form.page';
 import { PostService } from './services/post.service';
 import { UserService } from './services/user.service';
+import { PostStore } from './stores/post.store';
+import { UserStore } from './stores/user.store';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,6 @@ import { UserService } from './services/user.service';
     COMPONENTS
   ],
   entryComponents: [],
-  providers: [PostService, UserService],
+  providers: [PostService, UserService, PostStore, UserStore],
 })
 export class PostModule {}
